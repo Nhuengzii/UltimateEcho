@@ -23,6 +23,9 @@ export default function SetupMessageCommandHandler(client: Client, distube: DisT
     } else if (["leave", "l"].includes(command)) {
       distube.voices.get(message)?.leave();
       message.channel.send("Leaving the voice channel!");
+    } else if (["auto"].includes(command)) {
+      distube.getQueue(message)?.toggleAutoplay();
+      message.channel.send(`Autoplay is now ${distube.getQueue(message)?.autoplay ? "enabled" : "disabled"}`);
     }
   });
 }
