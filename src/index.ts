@@ -15,7 +15,7 @@ const distube = new DisTube(client, {
   leaveOnFinish: false,
   leaveOnStop: false,
 });
-setUpDistube(distube);
+setUpDistube(distube, client);
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -43,10 +43,6 @@ client.on("messageCreate", (message) => {
     distube.voices.get(message)?.leave();
     message.channel.send("Leaving the voice channel!");
   }
-});
-
-distube.on("addSong", (queue, song) => {
-  queue.autoplay = true;
 });
 
 const TOKEN = process.env.TOKEN;
