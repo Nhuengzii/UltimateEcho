@@ -26,6 +26,10 @@ export default function SetupMessageCommandHandler(client: Client, distube: DisT
     } else if (["auto"].includes(command)) {
       distube.getQueue(message)?.toggleAutoplay();
       message.channel.send(`Autoplay is now ${distube.getQueue(message)?.autoplay ? "enabled" : "disabled"}`);
+    } else if (["skip", "sk"].includes(command)) {
+      distube.getQueue(message)?.skip()
+    } else if (["stop", "st"].includes(command)) {
+      distube.getQueue(message)?.stop()
     }
   });
 }
